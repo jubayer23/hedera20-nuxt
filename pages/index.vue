@@ -60,7 +60,6 @@
 import Nav from '../components/Nav';
 
 import axios from 'axios';
-import MoonPay from '@moonpay/browser';
 
 export default {
     components: {
