@@ -1,0 +1,26 @@
+{
+  "name": "hedera20",
+  "version": "1.0.0",
+  "description": "Web Quiz app",
+  "author": "Harshak777",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "build": "nuxt build",
+    "start": "cross-env NODE_ENV=production node server/index.js",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@hashgraph/sdk": "^1.1.12",
+    "@moonpay/browser": "^1.0.6",
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/dotenv": "^1.4.0",
+    "cross-env": "^5.2.0",
+    "express": "^4.16.4",
+    "hash-sdk": "^2.1.0",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
