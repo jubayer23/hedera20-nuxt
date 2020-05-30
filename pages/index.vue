@@ -94,7 +94,7 @@ export default {
           account: localStorage.account,
           pk: localStorage.pk
         }
-        axios.post('http://localhost:5000/hedera/five', info)
+        axios.post('https://floating-basin-51607.herokuapp.com/hedera/five', info)
         .then(res => {
           if(res.data.status == 'SUCCESS') {
             window.location = '/quiz'
@@ -119,7 +119,7 @@ export default {
           account: localStorage.account,
           pk: localStorage.pk
         }
-        axios.post('http://localhost:5000/hedera/ten', info)
+        axios.post('https://floating-basin-51607.herokuapp.com/hedera/ten', info)
         .then(res => {
           if(res.data.status == 'SUCCESS') {
             window.location = '/quiz'
@@ -146,7 +146,7 @@ export default {
           account: localStorage.account,
           pk: localStorage.pk
         }
-      axios.post('http://localhost:5000/hedera/bal',info)
+      axios.post('https://floating-basin-51607.herokuapp.com/hedera/bal',info)
       .then(res => {
           console.log(res.data);
           this.bal = res.data;
