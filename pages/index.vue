@@ -5,7 +5,7 @@
   </div>
   <div class="main">
     <div id="art">
-      <h1>Play to Win</h1>
+      <h1>Play 2 Win</h1>
       <h1>Quiz</h1>
     </div>
     <div class="cent">
@@ -20,37 +20,36 @@
     </div>
     <div class="account">
         <div>
-          <b-dropdown id="dropdown-form" text="Account Credentials" ref="dropdown" class="l-2">
-            <b-dropdown-form>
-              <b-form-group label="Account Id" label-for="dropdown-form-email" @submit.stop.prevent>
-                <b-form-input
-                  id="dropdown-form-email"
-                  size="sm"
-                  placeholder="0.0.****"
-                  v-model="account"
-                ></b-form-input>
-              </b-form-group>
+          <b-button id="show-btn" @click="$bvModal.show('bv-modal-example')">Load Account</b-button>
 
-              <b-form-group label="Private Key" label-for="dropdown-form-password">
-                <b-form-input
-                  id="dropdown-form-password"
-                  type="password"
-                  size="sm"
-                  v-model="pk"
-                  placeholder="private key"
-                ></b-form-input>
-              </b-form-group>
+          <b-modal id="bv-modal-example" title="Load Your Hedera Account" hide-footer>
+            <b-form-group label="Account Id" label-for="dropdown-form-email" @submit.stop.prevent>
+              <b-form-input
+                id="dropdown-form-email"
+                size="sm"
+                placeholder="0.0.****"
+                v-model="account"
+              ></b-form-input>
+            </b-form-group>
 
-              <b-button variant="primary" size="sm" @click="onClickLock">Lock</b-button>
-              <b-button variant="danger" size="sm" @click="onClickUnlock">Unlock</b-button>
-              <b-dropdown-divider></b-dropdown-divider>
-              <p><a href="https://buy.moonpay.io/hbar">click here </a>to get some HBAR into your hedera wallet</p>
-            </b-dropdown-form>
-            <b-dropdown-divider></b-dropdown-divider>
-          </b-dropdown>
+            <b-form-group label="Private Key" label-for="dropdown-form-password">
+              <b-form-input
+                id="dropdown-form-password"
+                type="password"
+                size="sm"
+                v-model="pk"
+                placeholder="private key"
+              ></b-form-input>
+            </b-form-group>
+
+            <b-button class="mt-3" block @click="onClickLock">Load</b-button>
+          </b-modal>
         </div>
       <h3>Your account current balance</h3>
       <h2>{{bal}} ħ</h2>
+      <p>
+        <a href="https://buy.moonpay.io/hbar">click here</a> to get some HBAR into your hedera wallet
+      </p>
     </div>
   </div>
 </div>    
@@ -78,15 +77,51 @@ export default {
         event.returnValue = 'something';
       })
     },*/
+    mounted() {
+    {
+      if (localStorage.account && localStorage.pk) {
+        console.log("mounted");
+        const info = {
+          account: localStorage.account,
+          pk: localStorage.pk
+        };
+        axios
+          .post("http://localhost:5000/hedera/bal", info)
+          .then(res => {
+            console.log(res.data);
+            this.bal = res.data;
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      }
+    }
+  },
    methods: {
      onClickLock() {
-        localStorage.account=this.account;
-        localStorage.pk=this.pk;
-        this.$refs.dropdown.hide(true)
+        localStorage.account = this.account;
+      localStorage.pk = this.pk;
+      if (localStorage.account && localStorage.pk) {
+        console.log("account loaded");
+        const info = {
+          account: localStorage.account,
+          pk: localStorage.pk
+        };
+        axios
+          .post("http://localhost:5000/hedera/bal", info)
+          .then(res => {
+            console.log(res.data);
+            this.bal = res.data;
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      }
+      this.$bvModal.hide("bv-modal-example");
       },
       onClickUnlock() {
         localStorage.clear();
-        this.$refs.dropdown.hide(true)
+        this.$bvModal.hide("bv-modal-example");
       },
     five () {
       if(localStorage.account) {
@@ -110,7 +145,7 @@ export default {
         );
       }
       else {
-        alert("Please Enter Your Account Details To Play")
+        alert("Please Load Your Account Details To Play")
       }
     },
     ten () {
@@ -135,28 +170,8 @@ export default {
         );
       }
       else {
-        alert("Please Enter Your Account Details To Play")
+        alert("Please Load Your Account Details To Play")
       }
-    }
-  },
-  watch: {
-    account : function(){
-      if(localStorage.account) {
-        const info = {
-          account: localStorage.account,
-          pk: localStorage.pk
-        }
-      axios.post('https://floating-basin-51607.herokuapp.com/hedera/bal',info)
-      .then(res => {
-          console.log(res.data);
-          this.bal = res.data;
-        })
-        .catch(
-          err => {
-            console.error(err)
-          }
-        );
-     }
     }
   }
 }
