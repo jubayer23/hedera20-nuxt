@@ -86,7 +86,7 @@ export default {
           pk: localStorage.pk
         };
         axios
-          .post("http://localhost:5000/hedera/bal", info)
+          .post("https://floating-basin-51607.herokuapp.com/hedera/bal", info)
           .then(res => {
             console.log(res.data);
             this.bal = res.data;
@@ -108,7 +108,7 @@ export default {
           pk: localStorage.pk
         };
         axios
-          .post("http://localhost:5000/hedera/bal", info)
+          .post("https://floating-basin-51607.herokuapp.com/hedera/bal", info)
           .then(res => {
             console.log(res.data);
             this.bal = res.data;
