@@ -196,7 +196,7 @@ export default {
 }
 .account {
   position: relative;
-  top: 200px;
+  top: 100px;
 }
 h2 {
   border: 3px solid green;
