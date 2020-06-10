@@ -7,7 +7,7 @@
     </h2>
     <div class="bor">
       <h1>You Scored {{numCorrect}} out of {{numTotal}}</h1>
-      <b-button size="lg" variant="primary" to="/">Play Again</b-button>
+      <b-button size="lg" variant="primary" to="/">Home</b-button>
     </div>
     <div class="vector">
       <img src="./5482.jpg" :style="{'width': '500px'}" />
