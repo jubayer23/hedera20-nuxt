@@ -2,12 +2,12 @@
   <div class="result">
     <h2 v-if="numCorrect === numTotal">Congratulations Winner</h2>
     <h2 v-else>
-      Failure is the stepping stones for success.
+      Failure is the stepping stone for success.
       Never lose faith!! You can always try again to win!!
     </h2>
     <div class="bor">
       <h1>You Scored {{numCorrect}} out of {{numTotal}}</h1>
-      <b-button size="lg" variant="primary" to="/">Play Again</b-button>
+      <b-button size="lg" variant="primary" to="/">Home</b-button>
     </div>
     <div class="vector">
       <img src="./5482.jpg" :style="{'width': '500px'}" />
