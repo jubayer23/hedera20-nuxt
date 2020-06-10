@@ -1,24 +1,24 @@
 <template>
-<div class="content">
-  <div id="nav">
-    <Nav />
-  </div>
-  <div class="main">
-    <div id="art">
-      <h1>Play 2 Win</h1>
-      <h1>Quiz</h1>
+  <div class="content">
+    <div id="nav">
+      <Nav />
     </div>
-    <div class="cent">
-      <div class="left">
-        <b-button size="lg" variant="outline-primary" @click="five">Win 500ħ</b-button>
-        <h3>Entry Fee 5ħ</h3>
+    <div class="main">
+      <div id="art">
+        <h1>Play 2 Win</h1>
+        <h1>Quiz</h1>
       </div>
-      <div class="right">
-        <b-button size="lg" variant="outline-primary" @click="ten">Win 1000ħ</b-button>
-        <h3>Entry Fee 10ħ</h3>
+      <div class="cent">
+        <div class="left">
+          <b-button size="lg" variant="outline-primary" @click="five">Win 500ħ</b-button>
+          <h3>Entry Fee 5ħ</h3>
+        </div>
+        <div class="right">
+          <b-button size="lg" variant="outline-primary" @click="ten">Win 1000ħ</b-button>
+          <h3>Entry Fee 10ħ</h3>
+        </div>
       </div>
-    </div>
-    <div class="account">
+      <div class="account">
         <div>
           <b-button id="show-btn" @click="$bvModal.show('bv-modal-example')">Load Account</b-button>
 
@@ -45,31 +45,31 @@
             <b-button class="mt-3" block @click="onClickLock">Load</b-button>
           </b-modal>
         </div>
-      <h3>Your account current balance</h3>
-      <h2>{{bal}} ħ</h2>
-      <p>
-        <a href="https://buy.moonpay.io/hbar">click here</a> to get some HBAR into your hedera wallet
-      </p>
+        <h3>Your account current balance</h3>
+        <h2>{{bal}} ħ</h2>
+        <p>
+          <a href="https://buy.moonpay.io/hbar">click here</a> to get some HBAR into your hedera wallet
+        </p>
+      </div>
     </div>
   </div>
-</div>    
 </template>
 
 <script>
-import Nav from '../components/Nav';
+import Nav from "../components/Nav";
 
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-    components: {
+  components: {
     Nav
   },
-   data() {
+  data() {
     return {
-      bal:0,
-      account:'',
-      pk:''
-    }
+      bal: 0,
+      account: "",
+      pk: ""
+    };
   },
   /*created: function() {
       window.addEventListener('beforeunload', function(event) {
@@ -77,7 +77,7 @@ export default {
         event.returnValue = 'something';
       })
     },*/
-    mounted() {
+  mounted() {
     {
       if (localStorage.account && localStorage.pk) {
         console.log("mounted");
@@ -97,9 +97,9 @@ export default {
       }
     }
   },
-   methods: {
-     onClickLock() {
-        localStorage.account = this.account;
+  methods: {
+    onClickLock() {
+      localStorage.account = this.account;
       localStorage.pk = this.pk;
       if (localStorage.account && localStorage.pk) {
         console.log("account loaded");
@@ -118,63 +118,57 @@ export default {
           });
       }
       this.$bvModal.hide("bv-modal-example");
-      },
-      onClickUnlock() {
-        localStorage.clear();
-        this.$bvModal.hide("bv-modal-example");
-      },
-    five () {
-      if(localStorage.account) {
+    },
+    onClickUnlock() {
+      localStorage.clear();
+      this.$bvModal.hide("bv-modal-example");
+    },
+    five() {
+      if (localStorage.account) {
         const info = {
           account: localStorage.account,
           pk: localStorage.pk
-        }
-        axios.post('https://floating-basin-51607.herokuapp.com/hedera/five', info)
-        .then(res => {
-          if(res.data.status == 'SUCCESS') {
-            window.location = 'five/quiz'
-          } 
-          else {
-            alert('tx problem')
-          }
-        })
-        .catch(
-          err => {
-            console.error(err)
-          }
-        );
-      }
-      else {
-        alert("Please Load Your Account Details To Play")
+        };
+        axios
+          .post("https://floating-basin-51607.herokuapp.com/hedera/five", info)
+          .then(res => {
+            if (res.data.status == "SUCCESS") {
+              window.location = "/five/quiz";
+            } else {
+              alert("tx problem");
+            }
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      } else {
+        alert("Please Load Your Account Details To Play");
       }
     },
-    ten () {
-      if(localStorage.account) {
+    ten() {
+      if (localStorage.account) {
         const info = {
           account: localStorage.account,
           pk: localStorage.pk
-        }
-        axios.post('https://floating-basin-51607.herokuapp.com/hedera/ten', info)
-        .then(res => {
-          if(res.data.status == 'SUCCESS') {
-            window.location = 'ten/quiz'
-          } 
-          else {
-            alert('tx problem')
-          }
-        })
-        .catch(
-          err => {
-            console.error(err)
-          }
-        );
-      }
-      else {
-        alert("Please Load Your Account Details To Play")
+        };
+        axios
+          .post("https://floating-basin-51607.herokuapp.com/hedera/ten", info)
+          .then(res => {
+            if (res.data.status == "SUCCESS") {
+              window.location = "/ten/quiz";
+            } else {
+              alert("tx problem");
+            }
+          })
+          .catch(err => {
+            console.error(err);
+          });
+      } else {
+        alert("Please Load Your Account Details To Play");
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -183,7 +177,7 @@ export default {
 }
 .main {
   margin: auto;
-  width:50%;
+  width: 50%;
   text-align: center;
   padding: 10px;
 }
