@@ -21,15 +21,30 @@ export default {
                 account: localStorage.account
             }
             console.log(message)
-            axios.post('https://floating-basin-51607.herokuapp.com/hedera/fiveh', message)
-            .then(res => {
-                
-            })
-            .catch(
-                err => {
-                console.error(err)
-                }
-            );
+            if (this.$route.params.amt === "five") {
+                axios.post('https://floating-basin-51607.herokuapp.com/hedera/fiveh', message)
+                .then(res => {
+
+                })
+                .catch(
+                    err => {
+                    console.error(err)
+                    }
+                );
+            } else {
+            
+                axios.post('https://floating-basin-51607.herokuapp.com/hedera/tenh', message)
+                .then(res => {
+
+                })
+                .catch(
+                    err => {
+                    console.error(err)
+                    }
+                );
+            
+            }
+            
         }
   }
 }
