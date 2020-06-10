@@ -11,6 +11,7 @@
           :key="index"
           @click.prevent="selectAnswer(index)"
           :class="answerClass(index)"
+          :disabled="answered ? '' : disabled"
         >{{ answer }}</b-list-group-item>
       </b-list-group>
 
@@ -139,6 +140,6 @@ export default {
 }
 
 .incorrect {
-  background-color: red;
+  background-color: rgb(255, 71, 71);
 }
 </style>
