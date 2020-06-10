@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <Header :numCorrect="numCorrect" :numTotal="numTotal" />
+    <Header
+      :numCorrect="numCorrect"
+      :numTotal="numTotal"
+    />
 
     <b-container class="bv-example-row">
       <b-row>
@@ -25,12 +28,12 @@
 </template>
 
 <script>
-import Header from "../../../components/Header";
-import Result from "../../../components/Result";
-import QuestionBox from "../../../components/QuestionBox";
+import Header from '../../components/Header';
+import Result from '../../components/Result';
+import QuestionBox from '../../components/QuestionBox';
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
     Header,
     Result,
@@ -42,36 +45,36 @@ export default {
       index: 0,
       numCorrect: 0,
       numTotal: 0
-    };
+    }
   },
   methods: {
     next() {
-      this.index++;
+      this.index++
     },
     increment(isCorrect) {
       if (isCorrect) {
-        this.numCorrect++;
+        this.numCorrect++
       }
-      this.numTotal++;
+      this.numTotal++
     }
   },
   mounted: function() {
-    fetch("https://opentdb.com/api.php?amount=10&category=27&type=multiple", {
-      method: "get"
+    fetch('https://opentdb.com/api.php?amount=10&category=27&type=multiple', {
+      method: 'get'
     })
-      .then(response => {
-        return response.json();
+      .then((response) => {
+        return response.json()
       })
-      .then(jsonData => {
-        this.questions = jsonData.results;
-      });
+      .then((jsonData) => {
+        this.questions = jsonData.results
+      })
   }
-};
+}
 </script>
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
