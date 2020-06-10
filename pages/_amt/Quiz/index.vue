@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import Header from '../../components/Header';
-import Result from '../../components/Result';
-import QuestionBox from '../../components/QuestionBox';
+import Header from '../../../components/Header';
+import Result from '../../../components/Result';
+import QuestionBox from '../../../components/QuestionBox';
 
 export default {
   name: 'app',
