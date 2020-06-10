@@ -132,7 +132,7 @@ export default {
         axios.post('https://floating-basin-51607.herokuapp.com/hedera/five', info)
         .then(res => {
           if(res.data.status == 'SUCCESS') {
-            window.location = '/quiz'
+            window.location = 'five/quiz'
           } 
           else {
             alert('tx problem')
@@ -157,7 +157,7 @@ export default {
         axios.post('https://floating-basin-51607.herokuapp.com/hedera/ten', info)
         .then(res => {
           if(res.data.status == 'SUCCESS') {
-            window.location = '/quiz'
+            window.location = 'ten/quiz'
           } 
           else {
             alert('tx problem')
