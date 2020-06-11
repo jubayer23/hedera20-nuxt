@@ -3,7 +3,7 @@
     <div id="nav">
       <Nav />
     </div>
-    <div class="how" :style="{'background-image': 'url(~/assets/te.jpg)'}">
+    <div class="how">
       <b-jumbotron bg-variant="secondary" text-variant="white" border-variant="dark">
         <b-container class="bv-example-row">
           <h1>Contact:</h1>
@@ -38,7 +38,6 @@
 <script>
 import Vue from "vue";
 import Nav from "../components/Nav";
-import backgroundUrl from "../assets/12.png";
 import { BootstrapVueIcons } from "bootstrap-vue";
 
 Vue.use(BootstrapVueIcons);
@@ -48,7 +47,7 @@ export default {
     Nav
   },
   data() {
-    return { backgroundUrl };
+    
   }
 };
 </script>
