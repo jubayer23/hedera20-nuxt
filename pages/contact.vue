@@ -52,7 +52,7 @@ export default {
 };
 </script>
 <style>
-a {
+.how a {
   text-decoration: none;
   color: rgb(255, 235, 169);
 }
