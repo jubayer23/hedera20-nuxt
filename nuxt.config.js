@@ -44,13 +44,20 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/dotenv-module
     "@nuxtjs/dotenv",
     // Bootstrap
-    "bootstrap-vue/nuxt"
+    "bootstrap-vue/nuxt",
+    '@nuxtjs/proxy'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    proxy: true
+  },
+  proxy: { 
+  '/api/hedera/five': { 
+    target: 'https://serene-lamarr-1d35c2.netlify.app/' 
+  }
   /*
    ** Build configuration
    */
