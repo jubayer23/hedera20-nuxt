@@ -132,24 +132,14 @@ export default {
       this.$bvModal.hide("bv-modal-example");
     },
     five() {
+      console.log("hi its here")
       if (localStorage.account) {
         this.show = !this.show;
         const info = {
           account: localStorage.account,
           pk: localStorage.pk
         };
-        axios
-          .post("https://floating-basin-51607.herokuapp.com/hedera/five", info)
-          .then(res => {
-            if (res.data.status == "SUCCESS") {
-              window.location = "/five/quiz";
-            } else {
-              alert("tx problem");
-            }
-          })
-          .catch(err => {
-            console.error(err);
-          });
+        window.location = "/five/quiz";
       } else {
         alert("Please Load Your Account Details To Play");
       }

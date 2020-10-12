@@ -54,17 +54,12 @@ module.exports = {
   axios: {
     proxy: true
   },
-  proxy: { 
-  '/api/hedera/five': { 
-    target: 'https://serene-lamarr-1d35c2.netlify.app/' 
+  proxy: {
+  '/api/hedera/five': {
+    target: 'https://serene-lamarr-1d35c2.netlify.app/',changeOrigin:false
   }
   /*
    ** Build configuration
    */
-  build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {}
-  }
-};
+
+}};

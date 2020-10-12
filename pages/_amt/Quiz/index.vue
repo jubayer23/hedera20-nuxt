@@ -28,13 +28,16 @@
 import Header from "../../../components/Header";
 import Result from "../../../components/Result";
 import QuestionBox from "../../../components/QuestionBox";
+import axios from "axios";
+import Spinner from 'vue-spinner-component/src/Spinner.vue'
 
 export default {
   name: "app",
   components: {
     Header,
     Result,
-    QuestionBox
+    QuestionBox,
+    Spinner
   },
   data() {
     return {
@@ -56,15 +59,38 @@ export default {
     }
   },
   mounted: function() {
-    fetch("https://opentdb.com/api.php?amount=10&category=9&type=multiple", {
-      method: "get"
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(jsonData => {
-        this.questions = jsonData.results;
-      });
+    console.log("its here")
+
+    if (localStorage.account) {
+      this.show = !this.show;
+      const info = {
+        account: localStorage.account,
+        pk: localStorage.pk
+      };
+      axios
+        .post("https://floating-basin-51607.herokuapp.com/hedera/five", info)
+        .then(res => {
+          if (res.data.status == "SUCCESS") {
+            fetch("https://opentdb.com/api.php?amount=10&category=9&type=multiple", {
+              method: "get"
+            })
+              .then(response => {
+                return response.json();
+              })
+              .then(jsonData => {
+                this.questions = jsonData.results;
+              });
+          } else {
+            alert("tx problem");
+          }
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    } else {
+      alert("Please Load Your Account Details To Play");
+    }
+
   }
 };
 </script>

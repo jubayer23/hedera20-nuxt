@@ -11,7 +11,8 @@ async function start () {
   // Init Nuxt.js
   const nuxt = new Nuxt(config)
 
-  const { host, port } = nuxt.options.server
+  let { host, port } = nuxt.options.server
+  port = 3001;
 
   await nuxt.ready()
   // Build only in dev mode
