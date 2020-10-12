@@ -29,15 +29,13 @@ import Header from "../../../components/Header";
 import Result from "../../../components/Result";
 import QuestionBox from "../../../components/QuestionBox";
 import axios from "axios";
-import Spinner from 'vue-spinner-component/src/Spinner.vue'
 
 export default {
   name: "app",
   components: {
     Header,
     Result,
-    QuestionBox,
-    Spinner
+    QuestionBox
   },
   data() {
     return {
